@@ -1,0 +1,134 @@
+{
+  "date": "2026-09-18",
+  "edition": "Morning",
+  "title": "每日简报",
+  "readTime": "8",
+  "summary": [
+    "全球货币政策重新偏紧，能源价格继续成为通胀和资产定价的重要变量。",
+    "AI 工程自动化继续推进，Agent 开始更深地参与模型研发和推理基础设施优化。",
+    "游戏侧 TGS 2026 开幕，Switch 2 新作与后续发布值得继续跟踪。",
+    "全球风险仍集中在中东与俄乌方向，能源与航运是最值得关注的外溢渠道。"
+  ],
+  "sections": [
+    {
+      "id": "market",
+      "title": "市场 / 投资",
+      "items": [
+        {
+          "title": "全球利率预期继续上移",
+          "body": "美联储近期政策转向更偏鹰派后，市场开始重新评估高利率持续时间。能源价格上行又增加了通胀黏性，使“快速降息”叙事进一步降温。",
+          "commentary": "比单日股市涨跌更重要的是折现率环境发生变化。后续重点看能源价格、核心通胀和就业数据能否重新把政策预期拉回宽松方向。",
+          "sources": [
+            {
+              "label": "Federal Reserve",
+              "url": "https://www.federalreserve.gov/"
+            },
+            {
+              "label": "Bank of England",
+              "url": "https://www.bankofengland.co.uk/"
+            }
+          ]
+        },
+        {
+          "title": "能源重新成为宏观核心变量",
+          "body": "油气价格的持续高位正在同时影响通胀、消费与企业成本。若冲击延续，市场讨论重点会从“软着陆”重新转向增长放缓与通胀共存的组合。",
+          "commentary": "目前最值得跟踪的不是一次油价跳涨，而是高能源价格能维持多久，以及是否向核心通胀扩散。",
+          "sources": [
+            {
+              "label": "Reuters",
+              "url": "https://www.reuters.com/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tech",
+      "title": "科技圈昨日新鲜事",
+      "items": [
+        {
+          "title": "AI 开始更多参与 AI 自身研发",
+          "body": "Anthropic 等厂商正在尝试量化 AI 在真实研发流程中的占比，Agent 从辅助编码逐步进入实验、调试、分析和基础设施工作。",
+          "commentary": "比 benchmark 更值得长期追踪的是“真实研发工作里有多少已经由 AI 主导”。这类指标可能更接近生产力变化本身。",
+          "sources": [
+            {
+              "label": "Anthropic",
+              "url": "https://www.anthropic.com/"
+            }
+          ]
+        },
+        {
+          "title": "推理基础设施正在变成 Agent 的新战场",
+          "body": "近期多家模型团队都在尝试让 Agent 直接参与 kernel、并行策略、KV Cache 与推理链路调优，目标从“会写代码”转向“会优化完整系统”。",
+          "commentary": "关键不是让 Agent 看更多上下文，而是给它高密度、可验证的反馈：trace、benchmark、正确性检查和性能指标。",
+          "sources": [
+            {
+              "label": "Hacker News",
+              "url": "https://news.ycombinator.com/"
+            }
+          ]
+        },
+        {
+          "title": "数据基础设施生态继续补齐",
+          "body": "ClickHouse 等 OLAP 产品继续围绕 Airflow、dbt、Prometheus 与云原生生态补集成能力，竞争焦点逐步从单引擎性能扩展到平台完整度。",
+          "commentary": "这类新闻不大，但对企业数据平台更实用：真正影响采用率的往往是生态和运维，而不只是查询 benchmark。",
+          "sources": [
+            {
+              "label": "ClickHouse",
+              "url": "https://clickhouse.com/blog"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gaming",
+      "title": "游戏与硬件",
+      "items": [
+        {
+          "title": "TGS 2026 开幕，Switch 2 进入密集发布窗口",
+          "body": "东京电玩展进入发布周期，Switch 2 与 PC 游戏的新作、移植和试玩信息明显增多。今天没有足够重要的模拟器或硬件进展，因此不额外凑条目。",
+          "commentary": "这一栏以后会坚持宁缺毋滥，只有真正值得花时间看的发布、移植、模拟器或硬件进展才进入正文。",
+          "sources": [
+            {
+              "label": "Nintendo",
+              "url": "https://www.nintendo.com/"
+            },
+            {
+              "label": "Tokyo Game Show",
+              "url": "https://tgs.cesa.or.jp/"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "world",
+      "title": "全球大事",
+      "items": [
+        {
+          "title": "中东风险继续外溢到能源与航运",
+          "body": "中东冲突仍是全球风险资产的重要外部变量，红海航运、沙特能源设施与区域军事升级都可能快速传导至油价与运输成本。",
+          "commentary": "真正需要盯的是能源设施和关键航线是否受到持续影响，而不是单次袭击新闻本身。",
+          "sources": [
+            {
+              "label": "AP",
+              "url": "https://apnews.com/"
+            }
+          ]
+        },
+        {
+          "title": "俄乌局势继续围绕能源设施与局部停火博弈",
+          "body": "双方军事行动持续，能源设施仍是重要目标之一。关于局部停火或限制攻击范围的讨论存在，但距离稳定机制仍有明显距离。",
+          "commentary": "相比每日战线变化，更值得关注的是是否出现可执行、可监督的局部停火安排。",
+          "sources": [
+            {
+              "label": "Reuters",
+              "url": "https://www.reuters.com/world/"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
