@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#f7f7f5" />
+  <title>Daily Brief</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-mark">D</div>
+        <div>
+          <strong>Daily Brief</strong>
+          <span>10 分钟读完昨天</span>
+        </div>
+      </div>
+      <div class="history-head">
+        <span>历史简报</span>
+        <button id="themeToggle" class="icon-btn" aria-label="切换主题">◐</button>
+      </div>
+      <nav id="history" class="history" aria-label="历史简报"></nav>
+      <div class="sidebar-foot">市场 · 科技 · 游戏硬件 · 全球大事</div>
+    </aside>
+
+    <main class="main">
+      <div class="mobile-bar">
+        <button id="menuToggle" class="icon-btn" aria-label="打开历史">☰</button>
+        <strong>Daily Brief</strong>
+        <button id="themeToggleMobile" class="icon-btn" aria-label="切换主题">◐</button>
+      </div>
+
+      <article id="report" class="report" aria-live="polite">
+        <div class="loading">正在加载简报…</div>
+      </article>
+    </main>
+  </div>
+
+  <template id="emptyTemplate">
+    <section class="empty">
+      <h1>日报站点已就绪</h1>
+      <p>首期简报尚未发布。每日 09:00 更新后，这里会自动显示最新一期。</p>
+    </section>
+  </template>
+
+  <script src="./app.js" defer></script>
+</body>
+</html>
