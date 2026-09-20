@@ -2,62 +2,62 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="color-scheme" content="light dark" />
   <meta name="theme-color" content="#f3f1ec" />
+  <meta name="description" content="Daily Brief：每天 10 分钟，读完昨天最值得知道的事。" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Daily Brief" />
   <title>Daily Brief</title>
-  <link rel="stylesheet" href="./styles.css" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png" />
+  <link rel="icon" href="./icons/icon-192.png" />
+  <link rel="stylesheet" href="./home.css" />
 </head>
 <body>
-  <div class="reading-progress" aria-hidden="true"><span id="progressBar"></span></div>
-
-  <div class="shell">
-    <aside class="sidebar" id="sidebar">
-      <div class="brand">
-        <div class="brand-mark">D</div>
-        <div>
+  <main class="home-shell">
+    <header class="topbar">
+      <a class="identity" href="./" aria-label="Daily Brief 首页">
+        <span class="logo">D</span>
+        <span>
           <strong>Daily Brief</strong>
-          <span>10 分钟读完昨天</span>
-        </div>
+          <small>10 分钟读完昨天</small>
+        </span>
+      </a>
+      <button id="themeToggle" class="theme-btn" aria-label="切换主题">◐</button>
+    </header>
+
+    <section class="hero">
+      <p class="eyebrow">DAILY BRIEF · MORNING EDITION</p>
+      <h1>每天只读<br>真正值得知道的事。</h1>
+      <p class="intro">市场、科技、游戏硬件与全球大事。优先一手来源，控制在约 10 分钟阅读量。</p>
+      <div class="hero-actions">
+        <a id="latestButton" class="primary" href="./reader.html">阅读最新一期 <span>→</span></a>
+        <a class="secondary" href="#archive">历史简报</a>
       </div>
-
-      <div class="side-block">
-        <div class="side-head"><span>本期目录</span></div>
-        <nav id="toc" class="toc" aria-label="本期目录"></nav>
-      </div>
-
-      <div class="side-block history-block">
-        <div class="side-head">
-          <span>历史简报</span>
-          <button id="themeToggle" class="icon-btn" aria-label="切换主题">◐</button>
-        </div>
-        <nav id="history" class="history" aria-label="历史简报"></nav>
-      </div>
-
-      <div class="sidebar-foot">公开信息 · 一手来源优先 · 宁缺毋滥</div>
-    </aside>
-
-    <main class="main">
-      <div class="mobile-bar">
-        <button id="menuToggle" class="icon-btn" aria-label="打开导航">☰</button>
-        <strong>Daily Brief</strong>
-        <button id="themeToggleMobile" class="icon-btn" aria-label="切换主题">◐</button>
-      </div>
-
-      <article id="report" class="report" aria-live="polite">
-        <div class="loading">正在加载简报…</div>
-      </article>
-    </main>
-  </div>
-
-  <template id="emptyTemplate">
-    <section class="empty">
-      <p class="eyebrow">Daily Brief</p>
-      <h1>日报站点已就绪</h1>
-      <p>首期简报尚未发布。每日 09:00 更新后，这里会自动显示最新一期。</p>
     </section>
-  </template>
 
-  <script src="./app.js" defer></script>
+    <section id="latest" class="latest-card" aria-live="polite">
+      <div class="loading">正在加载最新一期…</div>
+    </section>
+
+    <section id="archive" class="archive">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">ARCHIVE</p>
+          <h2>最近简报</h2>
+        </div>
+        <span id="archiveCount" class="muted"></span>
+      </div>
+      <div id="archiveList" class="archive-list"></div>
+    </section>
+
+    <footer>
+      <span>Daily Brief</span>
+      <span>公开信息 · 一手来源优先 · 宁缺毋滥</span>
+    </footer>
+  </main>
+  <script src="./home.js" defer></script>
 </body>
 </html>
