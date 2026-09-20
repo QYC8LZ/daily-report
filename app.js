@@ -23,17 +23,24 @@ function navLink(item,label,side){
   if(!item)return '<a class="disabled">—</a>';
   return '<a href="?date='+item.date+'">'+(side==="prev"?"← ":"")+label+" · "+item.date+(side==="next"?" →":"")+'</a>'
 }
-function paragraphSet(item){
-  const out=[];
-  if(item.body||item.fact)out.push('<p>'+esc(item.body||item.fact)+'</p>');
-  if(item.commentary)out.push('<p>'+esc(item.commentary)+'</p>');
-  if(item.watch)out.push('<p class="secondary">后续可观察 '+esc(item.watch)+'</p>');
+function renderParagraphs(value){
+  if(!value)return "";
+  const list=Array.isArray(value)?value:String(value).split(/\n\s*\n/);
+  return list.filter(Boolean).map(p=>'<p>'+esc(p)+'</p>').join("");
+}
+function renderCommentary(item){
+  const parts=[];
+  if(item.commentary)parts.push(item.commentary);
+  if(item.watch)parts.push("后续可观察："+item.watch);
   const details=item.details||item.deepDive;
   if(details){
     const list=Array.isArray(details)?details:[details];
-    list.forEach(p=>out.push('<p class="secondary">'+esc(p)+'</p>'));
+    parts.push(...list);
   }
-  return out.join("");
+  if(!parts.length)return "";
+  return '<aside class="commentary-note"><span class="commentary-label">简评</span>'
+    +parts.map(p=>'<p>'+esc(p)+'</p>').join("")
+    +'</aside>';
 }
 function renderReport(data){
   document.title=(data.title||"每日简报")+" · Daily Brief";
@@ -42,7 +49,8 @@ function renderReport(data){
     const items=(s.items||[]).map((item,ii)=>
       '<article class="item" id="'+esc((s.id||"section-"+si)+"-item-"+ii)+'">'
       +'<h3>'+esc(item.title)+'</h3>'
-      +'<div class="article-copy">'+paragraphSet(item)+'</div>'
+      +'<div class="article-copy">'+renderParagraphs(item.body||item.fact)+'</div>'
+      +renderCommentary(item)
       +renderSources(item.sources)
       +'</article>'
     ).join("");
