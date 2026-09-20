@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#f3f1ec" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Daily Brief" />
+  <title>Daily Brief</title>
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png" />
+  <link rel="icon" href="./icons/icon-192.png" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="reading-progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+  <div class="shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="./" aria-label="返回主页" style="text-decoration:none;color:inherit">
+        <div class="brand-mark">D</div>
+        <div>
+          <strong>Daily Brief</strong>
+          <span>10 分钟读完昨天</span>
+        </div>
+      </a>
+
+      <div class="side-block">
+        <div class="side-head"><span>本期目录</span></div>
+        <nav id="toc" class="toc" aria-label="本期目录"></nav>
+      </div>
+
+      <div class="side-block history-block">
+        <div class="side-head">
+          <span>历史简报</span>
+          <button id="themeToggle" class="icon-btn" aria-label="切换主题">◐</button>
+        </div>
+        <nav id="history" class="history" aria-label="历史简报"></nav>
+      </div>
+
+      <div class="sidebar-foot">公开信息 · 一手来源优先 · 宁缺毋滥</div>
+    </aside>
+
+    <main class="main">
+      <div class="mobile-bar">
+        <button id="menuToggle" class="icon-btn" aria-label="打开导航">☰</button>
+        <a href="./" style="text-decoration:none;color:inherit"><strong>Daily Brief</strong></a>
+        <button id="themeToggleMobile" class="icon-btn" aria-label="切换主题">◐</button>
+      </div>
+
+      <article id="report" class="report" aria-live="polite">
+        <div class="loading">正在加载简报…</div>
+      </article>
+    </main>
+  </div>
+
+  <template id="emptyTemplate">
+    <section class="empty">
+      <p class="eyebrow">Daily Brief</p>
+      <h1>日报站点已就绪</h1>
+      <p>首期简报尚未发布。每日 09:00 更新后，这里会自动显示最新一期。</p>
+    </section>
+  </template>
+
+  <script src="./app.js" defer></script>
+</body>
+</html>
