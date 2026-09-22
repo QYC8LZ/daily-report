@@ -42,7 +42,18 @@ function renderCommentary(item){
     +parts.map(p=>'<p>'+esc(p)+'</p>').join("")
     +'</aside>';
 }
-function renderReport(data){
+function renderTradeAlert(plan){
+  if(!plan || !(plan.orders||[]).length)return "";
+  const names=(plan.orders||[]).map(x=>x.name||x.symbol).join("、");
+  const valid=(plan.orders||[]).map(x=>x.valid).filter(Boolean);
+  const validText=valid.length?" · 有效期 "+[...new Set(valid)].join(" / "):"";
+  return '<a class="action-alert" href="./portfolio.html?date='+esc(plan.date)+'">'
+    +'<span class="action-alert-badge">待执行</span>'
+    +'<span><strong>'+esc(plan.date)+' 有 '+(plan.orders||[]).length+' 笔待挂买单</strong>'
+    +'<small>'+esc(names)+esc(validText)+'</small></span>'
+    +'<span class="action-alert-arrow">→</span></a>';
+}
+function renderReport(data,tradePlan=null){
   document.title=(data.title||"每日简报")+" · Daily Brief";
   const summary=(data.summary||[]).map(x=>'<div class="headline"><span class="headline-mark">•</span><span>'+esc(x)+'</span></div>').join("");
   const sections=(data.sections||[]).map((s,si)=>{
@@ -65,7 +76,8 @@ function renderReport(data){
   const total=(data.sections||[]).reduce((n,s)=>n+(s.items||[]).length,0);
 
   $("#report").innerHTML=
-    '<header class="hero"><p class="kicker">Daily Brief</p><h1>'+esc(data.title||"每日简报")+'</h1>'
+    renderTradeAlert(tradePlan)
+    +'<header class="hero"><p class="kicker">Daily Brief</p><h1>'+esc(data.title||"每日简报")+'</h1>'
     +(data.deck?'<p class="hero-deck">'+esc(data.deck)+'</p>':'')
     +'<div class="hero-meta"><span>'+fmtDate(data.date)+'</span><span>约 '+esc(data.readTime||"10")+' 分钟</span><span>'+total+' 篇</span></div></header>'
     +(summary?'<section class="headlines"><h2>今日要闻</h2>'+summary+'</section>':"")
@@ -76,13 +88,25 @@ function renderReport(data){
   setupSectionObserver();
   updateProgress();
 }
+async function loadLatestTradePlan(){
+  try{
+    const ir=await fetch("./trading/index.json",{cache:"no-store"});
+    if(!ir.ok)return null;
+    const ip=await ir.json();
+    const latest=(ip.reports||[]).slice().sort((a,b)=>b.date.localeCompare(a.date))[0];
+    if(!latest)return null;
+    const pr=await fetch("./trading/"+latest.date+".json",{cache:"no-store"});
+    return pr.ok?await pr.json():null;
+  }catch(e){return null}
+}
 async function loadReport(date){
   try{
     const res=await fetch("./briefs/"+date+".json",{cache:"no-store"});
     if(!res.ok)throw new Error("not found");
     state.current=date;
     const data=await res.json();
-    renderHistory();renderReport(data);
+    const tradePlan=await loadLatestTradePlan();
+    renderHistory();renderReport(data,tradePlan);
     document.body.classList.remove("menu-open");
     scrollTo({top:0,behavior:"instant"});
   }catch(e){
