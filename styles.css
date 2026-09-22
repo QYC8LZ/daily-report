@@ -215,3 +215,25 @@ button,a{font:inherit}
   .trade-table td{display:grid;grid-template-columns:96px 1fr;gap:12px;padding:7px 0;border:0;min-width:0}
   .trade-table td::before{content:attr(data-label);color:var(--faint);font-size:10px;letter-spacing:.06em}
 }
+
+
+/* cross-page trading action alert */
+.action-alert{
+  display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;
+  margin:0 0 24px;padding:14px 16px;border:1px solid color-mix(in srgb,#a44d45 42%,var(--line));
+  border-radius:10px;background:color-mix(in srgb,#a44d45 7%,var(--paper));
+  color:var(--text);text-decoration:none;
+}
+.action-alert:hover{border-color:#a44d45}
+.action-alert-badge{
+  display:inline-block;padding:3px 7px;border-radius:999px;background:#a44d45;color:white;
+  font-size:10px;font-weight:700;letter-spacing:.08em;white-space:nowrap
+}
+.action-alert strong{display:block;font-size:13.5px;line-height:1.45}
+.action-alert small{display:block;margin-top:2px;color:var(--muted);font-size:11px;line-height:1.45}
+.action-alert-arrow{font-size:18px;color:#a44d45}
+.action-alert-trade{margin:20px 0 0}
+@media(max-width:520px){
+  .action-alert{grid-template-columns:auto 1fr;padding:12px 13px}
+  .action-alert-arrow{display:none}
+}
