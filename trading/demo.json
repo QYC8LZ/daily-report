@@ -1,0 +1,129 @@
+{
+  "date": "2026-09-22 · 示例",
+  "title": "收盘后的交易计划",
+  "deck": "把持仓管理和次日执行拆开看：先判断已有仓位是否还成立，再检查保护单，最后只保留真正值得挂出的新订单。",
+  "market": "A/H · 收盘后",
+  "note": "公开脱敏预览",
+  "summary": [
+    {
+      "label": "持仓状态",
+      "value": "5 稳定 · 2 观察 · 1 转弱",
+      "note": "示例"
+    },
+    {
+      "label": "条件单",
+      "value": "3 需要确认",
+      "note": "示例"
+    },
+    {
+      "label": "待挂买单",
+      "value": "2 笔",
+      "note": "示例"
+    }
+  ],
+  "positions": [
+    {
+      "symbol": "持仓 A",
+      "name": "示例股票",
+      "status": {
+        "label": "结构稳定",
+        "tone": "good"
+      },
+      "comment": "趋势仍在，今天没有出现破坏结构的收盘。",
+      "structure": "支撑 Zone 42.6–43.2",
+      "watch": "观察是否在前高附近形成新的收盘接受。"
+    },
+    {
+      "symbol": "持仓 B",
+      "name": "示例股票",
+      "status": {
+        "label": "临界观察",
+        "tone": "warn"
+      },
+      "comment": "收盘靠近结构下沿，但尚未形成确认失效。",
+      "structure": "支撑 Zone 18.4–18.9",
+      "watch": "若完整日线收在 buffer 外，再视为结构转弱。"
+    },
+    {
+      "symbol": "持仓 C",
+      "name": "示例股票",
+      "status": {
+        "label": "强势",
+        "tone": "good"
+      },
+      "comment": "突破后维持在新平台上方，暂不需要主动处理。",
+      "structure": "新支撑 76.0–78.0",
+      "watch": "只关注回踩是否被承接，不追高。"
+    }
+  ],
+  "stops": [
+    {
+      "symbol": "持仓 A",
+      "name": "示例股票",
+      "type": {
+        "label": "灾难止损",
+        "tone": "risk"
+      },
+      "trigger": "39.80",
+      "logic": "远离普通结构噪声，仅防极端失效。",
+      "state": {
+        "label": "保留",
+        "tone": "good"
+      }
+    },
+    {
+      "symbol": "持仓 B",
+      "name": "示例股票",
+      "type": {
+        "label": "旧条件单",
+        "tone": "warn"
+      },
+      "trigger": "18.20",
+      "logic": "与当前 Zone+buffer 逻辑不一致。",
+      "state": {
+        "label": "需要复核",
+        "tone": "warn"
+      }
+    },
+    {
+      "symbol": "持仓 C",
+      "name": "示例股票",
+      "type": {
+        "label": "灾难止损",
+        "tone": "risk"
+      },
+      "trigger": "70.50",
+      "logic": "保护更大级别结构。",
+      "state": {
+        "label": "保留",
+        "tone": "good"
+      }
+    }
+  ],
+  "orders": [
+    {
+      "symbol": "候选 D",
+      "name": "示例股票",
+      "type": {
+        "label": "Buy Stop-Limit",
+        "tone": "good"
+      },
+      "trigger": "Stop 31.20",
+      "limit": "31.55",
+      "invalid": "若开盘直接跳过 limit 或收盘跌回平台内则取消。",
+      "valid": "下一交易日"
+    },
+    {
+      "symbol": "候选 E",
+      "name": "示例股票",
+      "type": {
+        "label": "Buy Limit",
+        "tone": "neutral"
+      },
+      "trigger": "24.40–24.70",
+      "limit": "24.70",
+      "invalid": "若回踩不是缩量承接而是放量跌破，则不接。",
+      "valid": "下一交易日"
+    }
+  ]
+}
