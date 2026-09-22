@@ -41,10 +41,11 @@ function renderReport(d){
     +'<p class="hero-deck">'+esc(d.deck)+'</p>'
     +'<div class="hero-meta"><span>'+esc(d.date)+'</span><span>'+esc(d.market)+'</span><span>'+esc(d.note)+'</span></div></header>'
     +'<section class="trade-summary">'+(d.summary||[]).map(x=>'<div><span>'+esc(x.label)+'</span><strong>'+esc(x.value)+'</strong><small>'+esc(x.note||"")+'</small></div>').join("")+'</section>'
-    +'<section class="section" id="positions"><div class="section-head"><h2>持仓点评</h2><span>'+(d.positions||[]).length+' 项</span></div><div class="table-wrap"><table class="trade-table"><thead><tr>'+posCols.map(c=>'<th>'+esc(c.label)+'</th>').join("")+'</tr></thead><tbody>'+renderRows(d.positions||[],posCols)+'</tbody></table></div></section>'
-    +'<section class="section" id="stops"><div class="section-head"><h2>持仓条件单</h2><span>'+(d.stops||[]).length+' 项</span></div><div class="table-wrap"><table class="trade-table"><thead><tr>'+stopCols.map(c=>'<th>'+esc(c.label)+'</th>').join("")+'</tr></thead><tbody>'+renderRows(d.stops||[],stopCols)+'</tbody></table></div></section>'
+    +((d.orders||[]).length?'<a class="action-alert action-alert-trade" href="#orders"><span class="action-alert-badge">待执行</span><span><strong>下一交易日有 '+(d.orders||[]).length+' 笔待挂买单</strong><small>'+esc((d.orders||[]).map(x=>x.name||x.symbol).join("、"))+'</small></span><span class="action-alert-arrow">↓</span></a>':"")
     +'<section class="section" id="orders"><div class="section-head"><h2>待挂买单</h2><span>'+(d.orders||[]).length+' 项</span></div><div class="table-wrap"><table class="trade-table"><thead><tr>'+orderCols.map(c=>'<th>'+esc(c.label)+'</th>').join("")+'</tr></thead><tbody>'+renderRows(d.orders||[],orderCols)+'</tbody></table></div>'
     +(obs?'<div class="commentary-note"><span class="commentary-label">其他观察</span><ul>'+obs+'</ul></div>':"")+'</section>'
+    +'<section class="section" id="positions"><div class="section-head"><h2>持仓点评</h2><span>'+(d.positions||[]).length+' 项</span></div><div class="table-wrap"><table class="trade-table"><thead><tr>'+posCols.map(c=>'<th>'+esc(c.label)+'</th>').join("")+'</tr></thead><tbody>'+renderRows(d.positions||[],posCols)+'</tbody></table></div></section>'
+    +'<section class="section" id="stops"><div class="section-head"><h2>持仓条件单</h2><span>'+(d.stops||[]).length+' 项</span></div><div class="table-wrap"><table class="trade-table"><thead><tr>'+stopCols.map(c=>'<th>'+esc(c.label)+'</th>').join("")+'</tr></thead><tbody>'+renderRows(d.stops||[],stopCols)+'</tbody></table></div></section>'
     +'<nav class="report-nav">'+navLink(older,"上一期","prev")+navLink(newer,"下一期","next")+'</nav>';
 }
 async function loadReport(date){
