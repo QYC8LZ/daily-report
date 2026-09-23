@@ -24,7 +24,7 @@ function renderReport(d){
   ];
   const stopCols=[
     {label:"标的",render:r=>'<strong>'+esc(r.symbol)+'</strong><span class="sub">'+esc(r.name)+'</span>'},
-    {label:"条件单",render:r=>renderTag(r.type)},{label:"触发价",key:"trigger"},
+    {label:"条件单",render:r=>renderTag(r.type)},{label:"触发条件",key:"trigger"},
     {label:"保护逻辑",key:"logic"},{label:"状态",render:r=>renderTag(r.state)}
   ];
   const orderCols=[
