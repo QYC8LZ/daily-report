@@ -24,8 +24,8 @@ function renderReport(d){
   ];
   const stopCols=[
     {label:"标的",render:r=>'<strong>'+esc(r.symbol)+'</strong><span class="sub">'+esc(r.name)+'</span>'},
-    {label:"条件单",render:r=>renderTag(r.type)},{label:"触发条件",key:"trigger"},
-    {label:"保护逻辑",key:"logic"},{label:"状态",render:r=>renderTag(r.state)}
+    {label:"尾盘止损",render:r=>'<strong>'+esc(r.tail_exit||"—")+'</strong><span class="sub">'+esc(r.tail_logic||"")+'</span>'},
+    {label:"灾难止损",render:r=>'<strong>'+esc(r.disaster_stop||"—")+'</strong><span class="sub">'+esc(r.disaster_logic||"")+'</span>'}
   ];
   const orderCols=[
     {label:"标的",render:r=>'<strong>'+esc(r.symbol)+'</strong><span class="sub">'+esc(r.name)+'</span>'},
@@ -45,7 +45,7 @@ function renderReport(d){
     +'<section class="section" id="orders"><div class="section-head"><h2>待挂买单</h2><span>'+(d.orders||[]).length+' 项</span></div><div class="table-wrap"><table class="trade-table"><thead><tr>'+orderCols.map(c=>'<th>'+esc(c.label)+'</th>').join("")+'</tr></thead><tbody>'+renderRows(d.orders||[],orderCols)+'</tbody></table></div>'
     +(obs?'<div class="commentary-note"><span class="commentary-label">其他观察</span><ul>'+obs+'</ul></div>':"")+'</section>'
     +'<section class="section" id="positions"><div class="section-head"><h2>持仓点评</h2><span>'+(d.positions||[]).length+' 项</span></div><div class="table-wrap"><table class="trade-table"><thead><tr>'+posCols.map(c=>'<th>'+esc(c.label)+'</th>').join("")+'</tr></thead><tbody>'+renderRows(d.positions||[],posCols)+'</tbody></table></div></section>'
-    +'<section class="section" id="stops"><div class="section-head"><h2>持仓条件单</h2><span>'+(d.stops||[]).length+' 项</span></div><div class="table-wrap"><table class="trade-table"><thead><tr>'+stopCols.map(c=>'<th>'+esc(c.label)+'</th>').join("")+'</tr></thead><tbody>'+renderRows(d.stops||[],stopCols)+'</tbody></table></div></section>'
+    +'<section class="section" id="stops"><div class="section-head"><h2>持仓条件单</h2><span>'+(d.stops||[]).length+' 只</span></div><div class="table-wrap"><table class="trade-table"><thead><tr>'+stopCols.map(c=>'<th>'+esc(c.label)+'</th>').join("")+'</tr></thead><tbody>'+renderRows(d.stops||[],stopCols)+'</tbody></table></div></section>'
     +'<nav class="report-nav">'+navLink(older,"上一期","prev")+navLink(newer,"下一期","next")+'</nav>';
 }
 async function loadReport(date){
