@@ -1,0 +1,100 @@
+{
+  "date": "2026-10-03",
+  "edition": "Morning",
+  "title": "每日简报",
+  "deck": "美国就业数据压低短期加息预期，但全球债券抛售尚未结束；能源市场转向成品油紧张；AI 安全与数据基础设施各有新的工程信号。",
+  "readTime": "10",
+  "summary": [
+    "美国9月就业数据弱于预期，美股10月2日上涨，市场降低了对美联储本月加息的押注；全球长期债券收益率仍处高位。",
+    "G7同意释放合计1亿桶柴油和原油应急库存；布伦特原油10月2日收于每桶102.25美元。",
+    "OpenAI披露并阻断一场持续数月的协同模型蒸馏活动，攻击者试图规模化提取模型受保护的推理内容。",
+    "俄军连续两天打击基辅跨第聂伯河桥梁，乌方称交通与民用基础设施受到明显影响。"
+  ],
+  "sections": [
+    {
+      "id": "market",
+      "title": "市场 / 投资",
+      "items": [
+        {
+          "title": "美国就业降温压低10月加息预期，美股反弹但债市压力未退",
+          "body": "美国9月就业数据弱于市场预期后，投资者下调了对美联储10月会议加息的押注。10月2日，道琼斯工业指数上涨0.49%，标普500上涨0.73%，纳斯达克上涨1.19%；小盘股罗素2000录得约一个月来最大单日涨幅。美元走弱，欧洲和加拿大股市也随利率预期回落而反弹。与此同时，全球债券市场并未同步企稳，长期国债收益率在此前持续抛售后再度上行，部分市场收益率已升至约二十年来高位。",
+          "commentary": "股票与债券给出的信号并不完全一致：短期政策利率预期因就业降温而缓和，但长期债券仍在计入通胀、财政供给和期限溢价风险。对风险资产而言，眼下更重要的变量不是一次会议是否加息，而是长期无风险利率能否真正停止上行。",
+          "sources": [
+            {"label": "Reuters · US markets", "url": "https://www.reuters.com/business/wall-st-futures-gain-yields-oil-prices-ease-ahead-jobs-report-2026-10-02/"},
+            {"label": "Reuters · Global markets", "url": "https://www.reuters.com/world/china/global-markets-wrapup-1-2026-10-02/"}
+          ]
+        },
+        {
+          "title": "G7释放1亿桶应急库存，能源市场的紧张点转向柴油等成品油",
+          "body": "G7国家10月2日同意释放合计1亿桶柴油和原油应急库存，并承诺避免实施能源出口限制。欧洲计划释放约5000万桶柴油，国际能源署成员协调释放约5000万桶原油。当天布伦特原油结算价小幅回落至每桶102.25美元，WTI降至91.11美元。与此同时，中国10月暂停向香港和澳门以外地区出口燃料，亚洲汽油、柴油和航空煤油市场进一步收紧；Reuters报道，亚洲汽油炼油利润已升至较布伦特原油每桶50美元以上。",
+          "commentary": "目前能源冲击的核心已经不只是原油总量，而是炼化能力、柴油与航煤等具体产品的地区错配。释放原油库存能缓和价格预期，但若炼厂产能和成品油贸易受限，原油价格下降未必能等比例传导到终端燃料价格。",
+          "sources": [
+            {"label": "Reuters · G7 reserves", "url": "https://www.reuters.com/business/energy/europe-discussing-plan-diesel-stock-releases-after-us-pressure-source-says-2026-10-02/"},
+            {"label": "Reuters · Oil", "url": "https://www.reuters.com/business/energy/oil-rises-slightly-market-weighs-mixed-supply-signals-2026-10-02/"},
+            {"label": "Reuters · Asia fuel", "url": "https://www.reuters.com/business/energy/china-fuel-export-suspension-choke-supplies-asia-2026-10-02/"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tech",
+      "title": "科技",
+      "items": [
+        {
+          "title": "OpenAI披露协同模型蒸馏活动：攻击目标是受保护的推理内容",
+          "body": "OpenAI 9月30日披露，其发现并阻断了一场协同的对抗性模型蒸馏活动，最早可追溯到7月第一周。按照OpenAI的说明，操作者并未攻破加密、数据库或直接访问用户对话，而是通过规模化操纵模型交互，尝试让原本受保护的内部推理以请求者可见的形式复现，从而用于训练、复制或提升其他模型。OpenAI称已通过Frontier Model Forum与行业伙伴共享相关信息。",
+          "commentary": "这类事件把模型安全的边界从传统的账号、网络和数据安全扩展到了“能力资产”本身。只要模型可以通过交互被反复采样，输出接口就同时承担产品接口和潜在训练数据出口两种角色；防蒸馏因此更像持续的异常行为检测问题，而不是一次性堵住某个提示词漏洞。",
+          "sources": [
+            {"label": "OpenAI", "url": "https://openai.com/index/disrupting-a-coordinated-model-distillation-campaign/"}
+          ]
+        },
+        {
+          "title": "ClickHouse用Direct I/O隔离Postgres备份与在线查询的缓存竞争",
+          "body": "ClickHouse 10月2日发布工程文章，介绍其Managed Postgres备份链路采用Direct I/O和与存储条带大小匹配的读取方式。核心目的不是提高单次顺序读取的峰值速度，而是让大规模备份读取绕过操作系统page cache，避免备份流量驱逐数据库在线查询真正需要的热页。ClickHouse称这一设计用于在保持备份吞吐的同时，降低备份任务对查询延迟的干扰。该公司近期还在扩展Managed Postgres与ClickHouse分析服务之间的整合。",
+          "commentary": "这是一个很典型的数据库工程取舍：后台任务即使顺序吞吐很高，也不应该污染前台工作负载依赖的缓存。对混合型数据平台而言，资源隔离不只发生在CPU和内存配额层面，page cache、I/O调度和对象存储访问模式同样会决定尾延迟。",
+          "sources": [
+            {"label": "ClickHouse Engineering", "url": "https://clickhouse.com/blog"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gaming",
+      "title": "游戏与硬件",
+      "items": [
+        {
+          "title": "Steam秋季特卖开启，10月8日结束；本月随后还有Next Fest",
+          "body": "Valve的2026年Steam秋季特卖已于10月1日太平洋时间上午10点开启，并持续至10月8日上午10点。大量已发行PC游戏和DLC进入折扣周期。按照Valve此前公布的活动日历，秋季特卖之后，Cooking Fest将于10月12日至19日举行，10月版Steam Next Fest则安排在10月19日至26日，重点转向尚未发行游戏的试玩版。季节性特卖期间折扣通常保持不变，不再采用早年的每日或闪购式临时降价机制。",
+          "commentary": "如果目标是找真正值得玩的新游戏，这个月比单纯盯秋促更有价值的是10月19日开始的Next Fest：前者主要解决价格问题，后者更适合低成本筛选尚未发行的新作。",
+          "sources": [
+            {"label": "Steam", "url": "https://store.steampowered.com/"},
+            {"label": "PC Gamer", "url": "https://www.pcgamer.com/games/steam-autumn-sale-2026/"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "world",
+      "title": "全球大事",
+      "items": [
+        {
+          "title": "俄军连续打击基辅跨河桥梁，城市交通基础设施成为新的空袭重点",
+          "body": "俄罗斯10月2日继续对基辅跨第聂伯河桥梁发动空袭，南桥连续第二天遭到攻击。Reuters和AP报道，三座重要桥梁出现全部或部分关闭，给连接基辅左右两岸的日常通勤造成明显干扰；基辅超过三分之一居民居住在左岸，而大量就业和城市功能集中在右岸。同期，乌克兰能源设施继续遭到攻击，哈尔科夫也发生造成伤亡的制导炸弹袭击。乌方则持续以无人机攻击俄罗斯炼油和能源设施。",
+          "commentary": "在战线总体僵持的背景下，双方继续把远程打击重点放在能源、交通和后勤基础设施。桥梁与电网不同，替代路径有限，一旦持续受损，对城市运行的影响会迅速放大；进入冬季后，交通与能源系统的韧性会成为比单日战线变化更重要的观察指标。",
+          "sources": [
+            {"label": "Reuters", "url": "https://www.reuters.com/world/europe/russian-air-strikes-hit-southern-bridge-kyiv-again-mayor-says-2026-10-02/"},
+            {"label": "AP", "url": "https://apnews.com/article/1949f2a68b6b8b4bfeba5a86878c79bd"}
+          ]
+        },
+        {
+          "title": "俄罗斯举行Center-2026军演，中俄等多国部队参加",
+          "body": "俄罗斯总统普京10月2日在乌拉尔地区视察Center-2026军事演习最后阶段。美联社报道，为期一周的演习共有约4.7万名来自俄罗斯及伙伴国家的军人参加，其中约6000人参与车里雅宾斯克州切巴尔库尔靶场的最终阶段；中国、白俄罗斯、吉尔吉斯斯坦、塔吉克斯坦、蒙古和巴基斯坦等国部队参与，另有多国代表团观摩。演习还覆盖里海区域，并与集体安全条约组织的相关演训活动衔接。",
+          "commentary": "这类多国军演本身不等同于新的军事行动，但它展示了俄罗斯在乌克兰战争持续期间仍维持大规模联合演训和对外军事合作的能力。判断其战略含义，更值得看后续是否形成新的常态化部署、装备合作或联合指挥机制。",
+          "sources": [
+            {"label": "AP", "url": "https://apnews.com/article/135efde9d1f078bd2bd14b5d1e072711"}
+          ]
+        }
+      ]
+    }
+  ]
+}
